@@ -7,9 +7,9 @@ type prop = {
 };
 const HomePage = ({ sideDrawer }: prop): JSX.Element => {
   return (
-    <div className="flex  gap-2   ">
+    <div className="flex  gap-2 ">
       <SideBar sideDrawer={sideDrawer} />
-      <div className=" top-0  w-full  overflow-x-hidden">
+      <div className=" top-0  w-full ">
         <Categories />
         <VideoContainer />
       </div>

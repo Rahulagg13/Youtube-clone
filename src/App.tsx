@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
-import HomePage from "./Page/HomePage";
+import Loader from "./components/Loader";
 
+const HomePage = lazy(() => import("./Page/HomePage"));
+const WatchPage = lazy(() => import("./Page/WatchPage"));
 function App() {
   const [sideDrawer, setSideDrawer] = useState<boolean>(false);
   const [screen, setScreen] = useState<boolean>(false);
@@ -14,9 +16,12 @@ function App() {
         screen={screen}
         setScreen={setScreen}
       />
-      <Routes>
-        <Route path="/" element={<HomePage sideDrawer={sideDrawer} />} />
-      </Routes>
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path="/" element={<HomePage sideDrawer={sideDrawer} />} />
+          <Route path="/watch" element={<WatchPage />} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }

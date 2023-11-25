@@ -67,11 +67,11 @@ const Card = ({ info }: prop): JSX.Element => {
 
   return (
     <div className=" mt-8 w-[350px] ">
-      <img src={thumbnails?.medium?.url} alt={title} className="rounded-xl" />
+      <img src={thumbnails?.medium?.url} alt={title} className="rounded-xl w-full " />
       <div className="flex gap-4 mt-4">
         <img
           src={video?.items[0].snippet.thumbnails.high.url}
-          className="rounded-full w-10 h-10"
+          className="rounded-full w-10 h-10 "
         />
         <div className="text-sm space-y-2">
           <p>{title}</p>

@@ -78,3 +78,7 @@
 *::-webkit-scrollbar {
   display: none;
 }
+
+body {
+  overflow: auto;
+}

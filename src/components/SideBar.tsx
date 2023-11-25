@@ -36,7 +36,7 @@ const SideBar = ({ sideDrawer }: prop): JSX.Element => {
           </ul>
         </div>
       ) : (
-        <div className="  overflow-y-auto  w-36 md:w-72  mt-[-10px]   divide-y">
+        <div className=" sticky top-0 overflow-y-auto  w-36 md:w-72  mt-[-10px]   divide-y">
           <ul className="  w-full px-2 md:px-4">
             {General.map((category) => {
               return (

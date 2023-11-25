@@ -1,45 +1,33 @@
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import useFetch from "../hooks/useFetch";
-import Card from "../utils/Card";
-import { Skeleton } from "@/components/ui/skeleton";
+import Card from "./Card";
 import LoadingUi from "./LoadingUi";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const VideoContainer = () => {
-  const { getVideos, allVideos, scrolledDown, setScrollDown } = useFetch();
+  const { getVideos, allVideos } = useFetch();
 
   useEffect(() => {
     getVideos();
-  }, [getVideos, scrolledDown]);
-  // Infinite Scroll
-  const handleScroll = useCallback(() => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop + 1500 >=
-      document.documentElement.offsetHeight
-    ) {
-      setScrollDown(true);
-    }
-    return;
-  }, [setScrollDown]);
+  }, [getVideos]);
 
-  // Enabling Infinite Scroll by calculating the width
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
-  console.log(allVideos);
   return (
-    // <div className="grid h-screen xl:grid-cols-3 grid-cols-1 border w-full  hide-Scrollbar ">
-    //
-    // </div>
-    <div className="flex flex-wrap gap-8   md:justify-around justify-center mr-2 hide-Scrollbar ">
-      {allVideos === undefined ? (
-        <LoadingUi />
-      ) : (
-        allVideos?.items?.map((info: Item) => {
-          return <Card key={info.etag} info={info} />;
-        })
-      )}
-    </div>
+    <InfiniteScroll
+      dataLength={allVideos.length}
+      loader={<LoadingUi />}
+      hasMore={true}
+      next={getVideos}
+    >
+      <div className="flex flex-wrap cursor-pointer  overflow-y-auto  md:justify-around justify-center mr-2 ">
+        {allVideos === undefined ? (
+          <LoadingUi />
+        ) : (
+          allVideos?.map((info: Item, index: number) => {
+            return <Card key={info.etag + info.id + index} info={info} />;
+          })
+        )}
+      </div>
+    </InfiniteScroll>
   );
 };
 

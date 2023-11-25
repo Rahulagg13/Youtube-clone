@@ -2,14 +2,14 @@ import { useState, useCallback } from "react";
 import axios from "axios";
 import { youtube_video_api, channelImage_api } from "../utils/All_api";
 function useFetch() {
-  const [allVideos, setAllVideos] = useState<YotubeVideos>();
+  const [allVideos, setAllVideos] = useState<Item[]>([]);
   const [video, setVideo] = useState<videoDetails>();
-  const [scrolledDown, setScrollDown] = useState(false);
+
   const getVideos = useCallback(async (): Promise<void> => {
     try {
       const { data } = await axios.get(youtube_video_api);
-      setAllVideos(data);
-      setScrollDown(false);
+      console.log(data);
+      setAllVideos((prev) => [...prev,...data.items]);
     } catch (error) {
       console.log(error);
     }
@@ -18,7 +18,6 @@ function useFetch() {
   const getSingleVideo = useCallback(async (id: string): Promise<void> => {
     try {
       const { data } = await axios.get(channelImage_api + "&id=" + id);
-      console.log(data);
       setVideo(data);
     } catch (error) {
       console.log(error);
@@ -30,8 +29,6 @@ function useFetch() {
     allVideos,
     getSingleVideo,
     video,
-    scrolledDown,
-    setScrollDown,
   };
 }
 
