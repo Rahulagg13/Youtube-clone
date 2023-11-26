@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import Card from "./Card";
 import LoadingUi from "./LoadingUi";
@@ -18,12 +19,21 @@ const VideoContainer = () => {
       hasMore={true}
       next={getVideos}
     >
-      <div className="flex flex-wrap cursor-pointer  overflow-y-auto  md:justify-around justify-center mr-2 ">
+      <div
+        className="flex flex-wrap cursor-pointer  overflow-y-auto  md:justify-around justify-center mr-2 "
+      >
         {allVideos === undefined ? (
           <LoadingUi />
         ) : (
           allVideos?.map((info: Item, index: number) => {
-            return <Card key={info.etag + info.id + index} info={info} />;
+            return (
+              <Link
+                key={info.etag + info.id + index}
+                to={`/watch?v=${info.id}`}
+              >
+                <Card info={info} />
+              </Link>
+            );
           })
         )}
       </div>

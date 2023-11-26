@@ -20,7 +20,7 @@ type prop = {
 
 const Header = ({ setSideDrawer, screen, setScreen }: prop) => {
   return (
-    <div className="px-2 pb-2  mb-6 sticky top-0 z-20  bg-white  flex justify-between gap-10 lg:gap:20 items-center overflow-x-hidden  pt-2">
+    <div className="px-2 pb-2    mb-6 sticky top-0 z-20  bg-white  flex justify-between gap-10 lg:gap:20 items-center overflow-x-hidden  pt-2">
       {/* left-Side */}
       <div
         className={` ${

@@ -2,7 +2,7 @@ import Categories from "./Categories";
 import RecommendedCard from "./RecommendedCard";
 const RecommendedVideo = () => {
   return (
-    <div className=" w-full space-y-8 overflow-auto">
+    <div className=" hidden lg:block w-full lg:max-w-[30%] xl:max-w-[25%] 2xl:max-w-[20%] space-y-4 ml-2 mt-2 overflow-auto">
       <Categories />
       <div>
         <RecommendedCard />
