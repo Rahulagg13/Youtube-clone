@@ -20,8 +20,7 @@ const ChannelDetail = ({ channelId }: prop) => {
 
   return video === undefined ? (
     <>
-      hello
-      {console.log("hello from channel details")}
+      <p className="text-center text-xl">Error</p>
     </>
   ) : (
     <div className="flex items-center gap-2 lg:gap-4">

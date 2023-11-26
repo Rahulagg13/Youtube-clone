@@ -8,7 +8,6 @@ const SearchContainer = () => {
   const [searchParams] = useSearchParams();
   const query = searchParams.get("search_result");
   const { getSearchResult, searchResult } = useFetch();
-  console.log(searchResult);
   useEffect(() => {
     getSearchResult(query!);
   }, [getSearchResult, query]);
