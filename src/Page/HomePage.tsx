@@ -9,7 +9,7 @@ const HomePage = ({ sideDrawer }: prop): JSX.Element => {
   return (
     <div className="flex  gap-2 ">
       <SideBar sideDrawer={sideDrawer} />
-      <div className=" top-0  w-full ">
+      <div className="w-full overflow-auto ">
         <Categories />
         <VideoContainer />
       </div>

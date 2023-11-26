@@ -12,7 +12,7 @@ const buttonName: string[] = [
 const Categories = () => {
   const [selected, setSelected] = useState<string>(buttonName[0]);
   return (
-    <div className="overflow-y-auto  pb-2   w-full flex  items-center whitespace-nowrap hide-Scrollbar  gap-2 md:gap-4 text-xs md:text-sm font-medium  ">
+    <div className="overflow-auto  pb-2 w-full flex  items-center whitespace-nowrap hide-Scrollbar  gap-2 md:gap-4 text-xs md:text-sm font-medium  ">
       {buttonName.map((category: string): JSX.Element => {
         return (
           <button

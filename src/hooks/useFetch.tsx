@@ -6,20 +6,23 @@ import {
   // video_recommendations_api,
   videoDetailsApi,
   video_comments_details_api,
+  Search_results_api,
 } from "../utils/All_api";
 function useFetch() {
   const [allVideos, setAllVideos] = useState<Item[]>([]);
   const [video, setVideo] = useState<Item[]>([]);
   const [videoDetail, setVideoDetail] = useState<Item[]>([]);
   const [commentsDetail, setCommentDetail] = useState<CommentItem[]>([]);
+  const [searchResult, setSearchResult] = useState<SearchItem[]>([]);
+  const [error, setError] = useState<string>("");
   // const [recommendedVideo, setRecommendedVideo] = useState();
 
   const getVideos = useCallback(async (): Promise<void> => {
     try {
       const { data } = await axios.get(youtube_video_api);
       setAllVideos((prev) => [...prev, ...data.items]);
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      setError("Something Went wrong!!!");
     }
   }, []);
 
@@ -28,7 +31,7 @@ function useFetch() {
       const { data } = await axios.get(channelImage_api + "&id=" + id);
       setVideo(data?.items);
     } catch (error) {
-      console.log(error);
+      setError("Something Went wrong!!!");
     }
   }, []);
 
@@ -37,7 +40,7 @@ function useFetch() {
       const { data } = await axios.get(videoDetailsApi + "&id=" + id);
       setVideoDetail(data.items || []);
     } catch (error) {
-      console.log(error);
+      setError("Something Went wrong!!!");
     }
   }, []);
 
@@ -46,7 +49,18 @@ function useFetch() {
       const { data } = await axios.get(video_comments_details_api + id);
       setCommentDetail(data.items);
     } catch (error) {
-      console.log(error);
+      setError("Something Went wrong!!!");
+    }
+  }, []);
+
+  const getSearchResult = useCallback(async (query: string): Promise<void> => {
+    try {
+      const { data } = await axios.get(
+        Search_results_api + query + "&key=" + import.meta.env.VITE_APP_API_KEY
+      );
+      setSearchResult(data.items);
+    } catch (error) {
+      setError("Something Went wrong!!!");
     }
   }, []);
 
@@ -71,6 +85,9 @@ function useFetch() {
     videoDetail,
     getCommentDetails,
     commentsDetail,
+    getSearchResult,
+    searchResult,
+    error,
     // getRecommendedVideo,
   };
 }

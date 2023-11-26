@@ -22,7 +22,7 @@ const WatchVideo = () => {
   }, [getVideoDetails, videoId]);
 
   return (
-    <div className=" flex flex-col gap-2 w-full max-w-7xl 2xl:max-w-[80%] ">
+    <div className=" flex z-10 relative flex-col gap-2 w-full max-w-7xl 2xl:max-w-[80%] ">
       <iframe
         width={"100%"}
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -31,7 +31,7 @@ const WatchVideo = () => {
         src={"https://www.youtube.com/embed/" + videoId + "?autoplay=1&mute=0"}
       />
       {videoDetail === undefined ? (
-        <>hello{console.log("hello from watch video container")}</>
+        <></>
       ) : (
         //details page
         <>

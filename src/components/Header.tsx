@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { Dispatch, SetStateAction } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Dispatch, SetStateAction, FormEventHandler, useRef } from "react";
 import {
   AlignJustify,
   BellIcon,
@@ -19,6 +19,13 @@ type prop = {
 };
 
 const Header = ({ setSideDrawer, screen, setScreen }: prop) => {
+  const query = useRef<HTMLInputElement | null>(null);
+  const navigate = useNavigate();
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
+    navigate(`/result?search_result=${query.current?.value}`);
+    return;
+  };
   return (
     <div className="px-2 pb-2    mb-6 sticky top-0 z-20  bg-white  flex justify-between gap-10 lg:gap:20 items-center overflow-x-hidden  pt-2">
       {/* left-Side */}
@@ -44,6 +51,7 @@ const Header = ({ setSideDrawer, screen, setScreen }: prop) => {
         className={`gap-4  items-center w-[650px]  justify-center  ${
           screen ? "flex" : "hidden md:flex"
         } `}
+        onSubmit={handleSubmit}
       >
         {screen && (
           <button
@@ -58,6 +66,7 @@ const Header = ({ setSideDrawer, screen, setScreen }: prop) => {
             type="search"
             name=""
             id=""
+            ref={query}
             placeholder="Search"
             className="rounded-l-full h-9 border shadow-inner w-full px-4 py-2 focus:border-blue-500 outline-none md:h-11"
           />

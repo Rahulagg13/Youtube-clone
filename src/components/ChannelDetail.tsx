@@ -18,8 +18,6 @@ const ChannelDetail = ({ channelId }: prop) => {
   const { title, thumbnails } = snippet || {};
   const { subscriberCount } = statistics || {};
 
-  // console.log(thumbnails?.high?.url);
-
   return video === undefined ? (
     <>
       hello
@@ -27,7 +25,10 @@ const ChannelDetail = ({ channelId }: prop) => {
     </>
   ) : (
     <div className="flex items-center gap-2 lg:gap-4">
-      <img src={thumbnails?.high?.url} className="w-8 h-8 lg:w-10 lg:h-10 rounded-full" />
+      <img
+        src={thumbnails?.high?.url}
+        className="w-8 h-8 lg:w-10 lg:h-10 rounded-full"
+      />
       <div className="flex flex-col items-start ">
         <p className="flex items-center gap-2 font-bold text-xs lg:text-base">
           {title}
@@ -40,7 +41,9 @@ const ChannelDetail = ({ channelId }: prop) => {
           subscribers
         </p>
       </div>
-      <Button className="rounded-full text-[10px] lg:text-base ">Subscribe</Button>
+      <Button className="rounded-full text-[10px] lg:text-base ">
+        Subscribe
+      </Button>
     </div>
   );
 };
