@@ -25,9 +25,7 @@ const SearchCard = ({ info }: prop) => {
 
   return (
     <div className=" pb-4  flex flex-col md:flex-row gap-4  items-start  group px-4">
-      <div className=" md:w-60 lg:w-96 md:h-52">
-        <img src={thumbnails.medium.url} className=" h-full rounded-xl" />
-      </div>
+        <img src={thumbnails.medium.url} className="  md:w-60 lg:w-96 md:h-52 h-full rounded-xl" />
 
       <div className="flex  flex-col gap-4 w-full">
         <div className="flex flex-col gap-1">
