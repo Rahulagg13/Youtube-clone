@@ -7,16 +7,15 @@ import useFetch from "@/hooks/useFetch";
 const SearchContainer = () => {
   const [searchParams] = useSearchParams();
   const query = searchParams.get("search_result");
-
   const { getSearchResult, searchResult } = useFetch();
-
+  console.log(searchResult);
   useEffect(() => {
     getSearchResult(query!);
   }, [getSearchResult, query]);
 
   return (
     <div className="mt-6 space-y-8">
-      {searchResult === undefined ? (
+      {searchResult === undefined || searchResult.length === 0 ? (
         <>
           <SearchCardSkeleton />
           <SearchCardSkeleton />
