@@ -22,6 +22,7 @@ function useFetch() {
       const { data } = await axios.get(youtube_video_api);
       setAllVideos((prev) => [...prev, ...data.items]);
     } catch (err) {
+      console.log(err);
       setError("Something Went wrong!!!");
     }
   }, []);
